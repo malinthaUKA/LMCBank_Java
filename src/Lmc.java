@@ -160,9 +160,23 @@ public class Lmc extends javax.swing.JFrame {
             
             
             
-            if(rs.next()){
-                String dppwd = rs.getString(1).trim();
-                if(vpwd.equals(dppwd)){
+            if(rs.next()){   /* rs.next - 
+                
+                When you execute a query, the ResultSet cursor 
+                is initially positioned before the first row. 
+                This means that before calling rs.next(), the cursor is not pointing to any row.
+                
+                If the cursor moves to a valid row, rs.next() returns true.
+                If there are no more rows, rs.next() returns false.
+                */
+                String dbpwd = rs.getString(1).trim(); // 1 mean first column(column start from 1 not 0), // Result Set: The ResultSet object rs contains the results of this query. Since you're only selecting one column (pinno), the first column in the ResultSet will be the pinno.
+                /* trim() is a function used in various programming languages to remove whitespace characters from the beginning and end of a string. 
+                String str = "  Hello, world!  ";
+                String trimmedStr = str.trim();
+                System.out.println(trimmedStr); // Output: "Hello, world!"
+
+                */
+                if(vpwd.equals(dbpwd)){
                     JOptionPane.showMessageDialog(this, "Welcome LMC Bank");
                 }
             }else{
